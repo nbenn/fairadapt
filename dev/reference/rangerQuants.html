@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute Quantiles using random forests (`ranger` package) in the Quantile Learning step. — rangerQuants • Fair Data Adaptation</title>
+<title>Compute Quantiles using random forests (`ranger` package) in the Quantile
+Learning step. — rangerQuants • Fair Data Adaptation</title>
 
 
 <!-- jquery -->
@@ -39,8 +40,10 @@
 
 
 
-<meta property="og:title" content="Compute Quantiles using random forests (`ranger` package) in the Quantile Learning step. — rangerQuants" />
-<meta property="og:description" content="Compute Quantiles using random forests (`ranger` package) in the Quantile Learning step." />
+<meta property="og:title" content="Compute Quantiles using random forests (`ranger` package) in the Quantile
+Learning step. — rangerQuants" />
+<meta property="og:description" content="Compute Quantiles using random forests (`ranger` package) in the Quantile
+Learning step." />
 
 
 <meta name="robots" content="noindex">
@@ -120,13 +123,15 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute Quantiles using random forests (`ranger` package) in the Quantile Learning step.</h1>
+    <h1>Compute Quantiles using random forests (`ranger` package) in the Quantile
+Learning step.</h1>
     
     <div class="hidden name"><code>rangerQuants.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Compute Quantiles using random forests (`ranger` package) in the Quantile Learning step.</p>
+    <p>Compute Quantiles using random forests (`ranger` package) in the Quantile
+Learning step.</p>
     </div>
 
     <pre class="usage"><span class='fu'>rangerQuants</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>A.root</span>, <span class='va'>ind</span><span class='op'>)</span></pre>
@@ -136,21 +141,26 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>A <code>data.frame</code> with data to be used for quantile regression.</p></td>
+      <td><p>A <code>data.frame</code> with data to be used for quantile
+regression.</p></td>
     </tr>
     <tr>
       <th>A.root</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical(1L)</a></code> indicating whether the protected attribute `A` is a root node of the causal graph. Used for splitting the quantile regression.</p></td>
+      <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical(1L)</a></code> indicating whether the protected
+attribute `A` is a root node of the causal graph. Used for splitting the
+quantile regression.</p></td>
     </tr>
     <tr>
       <th>ind</th>
-      <td><p>A <code>logical</code> vector of length `nrow(data)`, indicating which samples have the baseline value of the protected attribute.</p></td>
+      <td><p>A <code>logical</code> vector of length `nrow(data)`, indicating which
+samples have the baseline value of the protected attribute.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A `ranger` or a `rangersplit` `S3` object, depending on the value of the `A.root` argument.</p>
+    <p>A `ranger` or a `rangersplit` `S3` object, depending on the value
+of the `A.root` argument.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
