@@ -134,7 +134,7 @@ Learning step.</h1>
 Learning step.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rangerQuants</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>A.root</span>, <span class='va'>ind</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>rangerQuants</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>A.root</span>, <span class='va'>ind</span>, min.node.size <span class='op'>=</span> <span class='fl'>20</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,6 +154,10 @@ quantile regression.</p></td>
       <th>ind</th>
       <td><p>A <code>logical</code> vector of length `nrow(data)`, indicating which
 samples have the baseline value of the protected attribute.</p></td>
+    </tr>
+    <tr>
+      <th>min.node.size, ...</th>
+      <td><p>Forwarded to [ranger::ranger()].</p></td>
     </tr>
     </table>
 

@@ -134,7 +134,13 @@ the Quantile Learning step.</h1>
 the Quantile Learning step.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>linearQuants</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>A.root</span>, <span class='va'>ind</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>linearQuants</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>A.root</span>,
+  <span class='va'>ind</span>,
+  tau <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.001</span>, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0.005</span>, <span class='fl'>0.995</span>, by <span class='op'>=</span> <span class='fl'>0.01</span><span class='op'>)</span>, <span class='fl'>0.999</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,6 +160,10 @@ quantile regression.</p></td>
       <th>ind</th>
       <td><p>A <code>logical</code> vector of length `nrow(data)`, indicating which
 samples have the baseline value of the protected attribute.</p></td>
+    </tr>
+    <tr>
+      <th>tau, ...</th>
+      <td><p>Forwarded to [quantreg::rq()].</p></td>
     </tr>
     </table>
 
