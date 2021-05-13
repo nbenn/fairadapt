@@ -393,7 +393,7 @@ Number of training samples:           200
 Number of test samples:               200 
 Number of independent variables:      3 
 Total variation (before adaptation):  -0.6757414 
-Total variation (after adaptation):   -0.01058192 
+Total variation (after adaptation):   -0.02112298 
 \end{CodeOutput}
 \end{CodeChunk}
 
@@ -425,7 +425,7 @@ R> plot(toy.graph, vertex.size = 40, vertex.label.cex = 0.5,
 \end{CodeInput}
 
 
-\begin{center}\includegraphics[width=200px,height=200px]{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpZM2OZh/file76b2c03ef6c/dev/articles/jss_files/figure-latex/mat-1} \end{center}
+\begin{center}\includegraphics[width=200px,height=200px]{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpKvH85R/file8a326f545be/dev/articles/jss_files/figure-latex/mat-1} \end{center}
 
 \end{CodeChunk}
 
@@ -514,17 +514,17 @@ R> fairTwins(FA.basic, train.id = seq.int(1L, 5L, 1L))
 \end{CodeInput}
 \begin{CodeOutput}
   gender      score score_adapted        edu edu_adapted         test
-1      1  1.9501728    1.28951398  1.3499572   0.5656653  1.617739679
+1      1  1.9501728    0.96725357  1.3499572   0.5815851  1.617739679
 2      0 -2.3502495   -2.35024955 -1.9779234  -1.9779234 -3.121796235
-3      1  0.6285619   -0.04234933  0.6263626  -0.2030299  0.530034686
-4      1  0.7064857    0.01128870  0.8142112   0.1162103  0.004573003
-5      1  0.3678313    0.29684574  1.8415242   0.9265140  1.193677123
+3      1  0.6285619   -0.12978380  0.6263626  -0.0505740  0.530034686
+4      1  0.7064857    0.26036151  0.8142112   0.1408227  0.004573003
+5      1  0.3678313    0.09507181  1.8415242   0.9574335  1.193677123
   test_adapted
-1    0.6253059
+1    0.8174008
 2   -3.1217962
-3   -0.4993153
-4   -0.7310462
-5    0.5390240
+3   -0.3345859
+4   -0.6242382
+5    0.3294576
 \end{CodeOutput}
 \end{CodeChunk}
 
@@ -613,7 +613,7 @@ R> plot(census.graph, vertex.size = 20, vertex.label.cex = 0.5,
 \end{CodeInput}
 
 
-\begin{center}\includegraphics{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpZM2OZh/file76b2c03ef6c/dev/articles/jss_files/figure-latex/census-graph-1} \end{center}
+\begin{center}\includegraphics{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpKvH85R/file8a326f545be/dev/articles/jss_files/figure-latex/census-graph-1} \end{center}
 
 \end{CodeChunk}
 
@@ -666,7 +666,7 @@ R> ggplot(dat[1:nsamples], aes(x = salary, fill = sex)) +
 \end{CodeInput}
 
 
-\begin{center}\includegraphics{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpZM2OZh/file76b2c03ef6c/dev/articles/jss_files/figure-latex/log-and-graph-1} \end{center}
+\begin{center}\includegraphics{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpKvH85R/file8a326f545be/dev/articles/jss_files/figure-latex/log-and-graph-1} \end{center}
 
 \end{CodeChunk}
 
@@ -698,7 +698,7 @@ R> autoplot(FA.govcensus, when = "after") +
 \end{CodeInput}
 
 
-\begin{center}\includegraphics{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpZM2OZh/file76b2c03ef6c/dev/articles/jss_files/figure-latex/vis-adapt-1} \end{center}
+\begin{center}\includegraphics{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpKvH85R/file8a326f545be/dev/articles/jss_files/figure-latex/vis-adapt-1} \end{center}
 
 \end{CodeChunk}
 
@@ -712,26 +712,26 @@ R> adapt.test <- predict(FA.govcensus, newdata = new.test)
 R> head(adapt.test)
 \end{CodeInput}
 \begin{CodeOutput}
-      sex age  race hispanic_origin citizenship nativity  marital family_size
-1: female  52 white              no           1   native  married           3
-2: female  31 white              no           1   native  married           5
-3: female  53 white              no           1   native divorced           2
-4: female  53 black              no           1   native  married           2
-5: female  23 white              no           1   native  married           2
-6: female  49 white             yes           1   native  married           7
+      sex age  race hispanic_origin citizenship nativity marital family_size
+1: female  52 white              no           1   native married           3
+2: female  31 white              no           1   native married           5
+3: female  53 white              no           1   native married           2
+4: female  53 black              no           1   native married           2
+5: female  23 white              no           1   native married           2
+6: female  49 white             yes           1   native married           7
    children education_level english_level   salary hours_worked weeks_worked
-1:        1              21             0 11.91839        40.00           49
-2:        3              22             0 10.77896        40.00           49
-3:        0              22             0 11.40756        40.00           49
-4:        0              21             0 11.28978        40.00           49
-5:        0              22             0 10.46310        21.96           49
-6:        4              21             0 10.69194        40.00           49
+1:        1              21             0 11.91839           40           49
+2:        3              22             0 10.77896           40           49
+3:        0              22             0 11.40756           40           39
+4:        0              21             0 11.28978           40           49
+5:        0              22             0 10.46310           20           49
+6:        4              21             0 10.69194           40           49
    occupation industry economic_region
 1:    13-1082     92M2       Southeast
 2:    25-2020     6111       Southeast
-3:    25-2050      484       Southeast
+3:    25-1000     4453       Southeast
 4:    11-91XX     928P       Southeast
-5:    25-2050 928110P2       Southeast
+5:    25-2050   33299M       Southeast
 6:    25-2020     6111       Southeast
 \end{CodeOutput}
 \end{CodeChunk}
@@ -747,17 +747,17 @@ R> fairTwins(FA.govcensus, train.id = 1:5, cols = inspect.cols)
 \end{CodeInput}
 \begin{CodeOutput}
      sex age age_adapted education_level education_level_adapted   salary
-1   male  64          64              20                      20 10.66896
+1   male  64          64              20                      19 10.66896
 2 female  54          54              20                      20 10.71442
 3   male  38          38              24                      24 11.50288
 4 female  41          41              24                      24 11.05089
 5 female  40          40              21                      21 10.71885
   salary_adapted
-1       10.44290
-2       10.71442
-3       11.73607
-4       11.05089
-5       10.71885
+1       9.546813
+2      10.714418
+3      11.461632
+4      11.050890
+5      10.718852
 \end{CodeOutput}
 \end{CodeChunk}
 
@@ -831,7 +831,7 @@ Number of training samples:           200
 Number of test samples:               200 
 Number of independent variables:      3 
 Total variation (before adaptation):  -0.6757414 
-Total variation (after adaptation):   -0.38181 
+Total variation (after adaptation):   -0.3904299 
 \end{CodeOutput}
 \end{CodeChunk}
 
@@ -849,7 +849,7 @@ R> plot(graphModel(uni.adj.mat, res.vars = "test"),
 \end{CodeInput}
 
 
-\begin{center}\includegraphics[width=200px,height=200px]{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpZM2OZh/file76b2c03ef6c/dev/articles/jss_files/figure-latex/resolving-graph-1} \end{center}
+\begin{center}\includegraphics[width=200px,height=200px]{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpKvH85R/file8a326f545be/dev/articles/jss_files/figure-latex/resolving-graph-1} \end{center}
 
 \end{CodeChunk}
 
@@ -957,7 +957,7 @@ R> plot(FA.semimarkov, graph = T, vertex.size = 40,
 \end{CodeInput}
 
 
-\begin{center}\includegraphics[width=200px,height=200px]{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpZM2OZh/file76b2c03ef6c/dev/articles/jss_files/figure-latex/graph-semimarkov-1} \end{center}
+\begin{center}\includegraphics[width=200px,height=200px]{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpKvH85R/file8a326f545be/dev/articles/jss_files/figure-latex/graph-semimarkov-1} \end{center}
 
 \end{CodeChunk}
 
