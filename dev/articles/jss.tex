@@ -357,7 +357,7 @@ be specified:
 \item
   \texttt{train.data}, \texttt{test.data} of type \texttt{data.frame}
 \item
-  \texttt{protect.A} of type \texttt{character} is of length one and
+  \texttt{prot.attr} of type \texttt{character} is of length one and
   names the protected attribute.
 \end{itemize}
 
@@ -376,7 +376,7 @@ R>
 R> FA.basic <- fairadapt(score ~ .,
 +   train.data = uni_admission[1:nsamp, ],
 +   test.data = uni_admission[(nsamp+1):(2*nsamp), ],
-+   adj.mat = uni.adj.mat, protect.A = "gender", res.vars = NULL,
++   adj.mat = uni.adj.mat, prot.attr = "gender", res.vars = NULL,
 +   visualize.graph = F, quant.method = fairadapt:::rangerQuants)
 R> 
 R> FA.basic
@@ -393,7 +393,7 @@ Number of training samples:           200
 Number of test samples:               200 
 Number of independent variables:      3 
 Total variation (before adaptation):  -0.6757414 
-Total variation (after adaptation):   -0.1251306 
+Total variation (after adaptation):   -0.01452304 
 \end{CodeOutput}
 \end{CodeChunk}
 
@@ -425,7 +425,7 @@ R> plot(toy.graph, vertex.size = 40, vertex.label.cex = 0.5,
 \end{CodeInput}
 
 
-\begin{center}\includegraphics[width=200px,height=200px]{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpe6cx6o/file72349a306b4/dev/articles/jss_files/figure-latex/mat-1} \end{center}
+\begin{center}\includegraphics[width=200px,height=200px]{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp66rOrm/filed7e3666a592/dev/articles/jss_files/figure-latex/mat-1} \end{center}
 
 \end{CodeChunk}
 
@@ -446,7 +446,7 @@ stage.
 We note that \texttt{train.data} and \texttt{test.data} need to have
 column names which appear in the names of the adjacency matrix
 \texttt{colnames(adj.mat)}. The protected attribute \(A\) is given as a
-character vector \texttt{protect.A} of length one.
+character vector \texttt{prot.attr} of length one.
 
 The quantile learning step in Algorithm \ref{algo:fairadapt} can be done
 using three different methods:
@@ -514,17 +514,17 @@ R> fairTwins(FA.basic, train.id = seq.int(1L, 5L, 1L))
 \end{CodeInput}
 \begin{CodeOutput}
   gender      score score_adapted        edu edu_adapted         test
-1      1  1.9501728    0.96725357  1.3499572   0.7416899  1.617739679
+1      1  1.9501728    1.09841348  1.3499572   0.6971354  1.617739679
 2      0 -2.3502495   -2.35024955 -1.9779234  -1.9779234 -3.121796235
-3      1  0.6285619    0.03824946  0.6263626  -0.2528851  0.530034686
-4      1  0.7064857    0.13173095  0.8142112  -0.1614107  0.004573003
-5      1  0.3678313    0.29684574  1.8415242   1.4722100  1.193677123
+3      1  0.6285619   -0.04234933  0.6263626  -0.1731971  0.530034686
+4      1  0.7064857   -0.04234933  0.8142112  -0.1866136  0.004573003
+5      1  0.3678313    0.25728875  1.8415242   1.4722100  1.193677123
   test_adapted
-1    0.9070710
+1    0.9469090
 2   -3.1217962
-3   -0.5213675
-4   -0.8250264
-5    0.5390240
+3   -0.4944016
+4   -1.0816571
+5    0.4848323
 \end{CodeOutput}
 \end{CodeChunk}
 
@@ -577,7 +577,7 @@ R> print(head(dat))
 \end{CodeOutput}
 \begin{CodeInput}
 R> # group the columns
-R> protect.A <- "sex"
+R> prot.attr <- "sex"
 R> dmgraph <- c("age", "race", "hispanic_origin", "citizenship", "nativity",
 +   "economic_region")
 R> fam <- c("marital", "family_size", "children")
@@ -593,19 +593,19 @@ matrix:
 
 \begin{CodeChunk}
 \begin{CodeInput}
-R> col.names <- c(protect.A, dmgraph, fam, edu, work, out)
+R> col.names <- c(prot.attr, dmgraph, fam, edu, work, out)
 R> 
 R> adj.mat <- cfd.mat <- array(0, dim = c(length(col.names), length(col.names)))
 R> colnames(adj.mat) <- rownames(adj.mat) <-
 +   colnames(cfd.mat) <- rownames(cfd.mat) <-
 +   col.names
 R> 
-R> adj.mat[protect.A, c(fam, edu, work, out)] <-
+R> adj.mat[prot.attr, c(fam, edu, work, out)] <-
 +   adj.mat[dmgraph, c(fam, edu, work, out)] <-
 +   adj.mat[fam, c(edu, work, out)] <-
 +   adj.mat[edu, c(work, out)] <-
 +   adj.mat[work, out] <-
-+   cfd.mat[protect.A, dmgraph] <- cfd.mat[dmgraph, protect.A] <- 1L
++   cfd.mat[prot.attr, dmgraph] <- cfd.mat[dmgraph, prot.attr] <- 1L
 R> 
 R> census.graph <- graphModel(adj.mat, cfd.mat)
 R> plot(census.graph, vertex.size = 20, vertex.label.cex = 0.5,
@@ -613,7 +613,7 @@ R> plot(census.graph, vertex.size = 20, vertex.label.cex = 0.5,
 \end{CodeInput}
 
 
-\begin{center}\includegraphics{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpe6cx6o/file72349a306b4/dev/articles/jss_files/figure-latex/census-graph-1} \end{center}
+\begin{center}\includegraphics{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp66rOrm/filed7e3666a592/dev/articles/jss_files/figure-latex/census-graph-1} \end{center}
 
 \end{CodeChunk}
 
@@ -666,7 +666,7 @@ R> ggplot(dat[1:nsamples], aes(x = salary, fill = sex)) +
 \end{CodeInput}
 
 
-\begin{center}\includegraphics{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpe6cx6o/file72349a306b4/dev/articles/jss_files/figure-latex/log-and-graph-1} \end{center}
+\begin{center}\includegraphics{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp66rOrm/filed7e3666a592/dev/articles/jss_files/figure-latex/log-and-graph-1} \end{center}
 
 \end{CodeChunk}
 
@@ -682,7 +682,7 @@ not to be removed. To solve the problem, the US governemnt applies
 \begin{CodeChunk}
 \begin{CodeInput}
 R> FA.govcensus <- fairadapt(salary ~ ., train.data = dat[1:nsamples],
-+                           adj.mat = adj.mat, protect.A = protect.A,
++                           adj.mat = adj.mat, prot.attr = prot.attr,
 +                           visualize.graph = F)
 \end{CodeInput}
 \end{CodeChunk}
@@ -698,7 +698,7 @@ R> autoplot(FA.govcensus, when = "after") +
 \end{CodeInput}
 
 
-\begin{center}\includegraphics{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpe6cx6o/file72349a306b4/dev/articles/jss_files/figure-latex/vis-adapt-1} \end{center}
+\begin{center}\includegraphics{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp66rOrm/filed7e3666a592/dev/articles/jss_files/figure-latex/vis-adapt-1} \end{center}
 
 \end{CodeChunk}
 
@@ -720,18 +720,18 @@ R> head(adapt.test)
 5: female  23 white              no           1   native married           2
 6: female  49 white             yes           1   native married           7
    children education_level english_level   salary hours_worked weeks_worked
-1:        1              21             0 11.91839       40.000           49
-2:        3              22             0 10.77896       40.000           49
-3:        0              23             0 11.40756       45.000           49
-4:        0              21             0 11.28978       40.000           49
-5:        0              22             0 10.46310       14.958           49
-6:        4              21             0 10.69194       40.000           49
+1:        1          21.000             0 11.91839        40.00           49
+2:        3          22.000             0 10.77896        40.00           49
+3:        0          22.000             0 11.40756        40.00           49
+4:        0          21.000             0 11.28978        40.00           49
+5:        0          22.000             0 10.46310        15.99           49
+6:        4          21.272             0 10.69194        40.00           49
    occupation industry economic_region
 1:    13-1082     92M2       Southeast
 2:    25-2020     6111       Southeast
-3:    25-1000      22S       Southeast
+3:    25-2030     4453       Southeast
 4:    11-91XX     928P       Southeast
-5:    43-9XXX 928110P2       Southeast
+5:    29-1141 928110P2       Southeast
 6:    25-2020     6111       Southeast
 \end{CodeOutput}
 \end{CodeChunk}
@@ -747,15 +747,15 @@ R> fairTwins(FA.govcensus, train.id = 1:5, cols = inspect.cols)
 \end{CodeInput}
 \begin{CodeOutput}
      sex age age_adapted education_level education_level_adapted   salary
-1   male  64          64              20                      19 10.66896
+1   male  64          64              20                      20 10.66896
 2 female  54          54              20                      20 10.71442
 3   male  38          38              24                      24 11.50288
 4 female  41          41              24                      24 11.05089
 5 female  40          40              21                      21 10.71885
   salary_adapted
-1       10.08581
+1       10.30895
 2       10.71442
-3       11.60824
+3       11.64395
 4       11.05089
 5       10.71885
 \end{CodeOutput}
@@ -813,7 +813,7 @@ dataset
 R> FA.resolving <- fairadapt(score ~ .,
 +   train.data = uni_admission[1:nsamp, ],
 +   test.data = uni_admission[(nsamp+1):(2*nsamp), ],
-+   adj.mat = uni.adj.mat, protect.A = "gender", res.vars = "test",
++   adj.mat = uni.adj.mat, prot.attr = "gender", res.vars = "test",
 +   visualize.graph = F)
 R> 
 R> FA.resolving
@@ -831,7 +831,7 @@ Number of training samples:           200
 Number of test samples:               200 
 Number of independent variables:      3 
 Total variation (before adaptation):  -0.6757414 
-Total variation (after adaptation):   -0.4060567 
+Total variation (after adaptation):   -0.4163585 
 \end{CodeOutput}
 \end{CodeChunk}
 
@@ -849,7 +849,7 @@ R> plot(graphModel(uni.adj.mat, res.vars = "test"),
 \end{CodeInput}
 
 
-\begin{center}\includegraphics[width=200px,height=200px]{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpe6cx6o/file72349a306b4/dev/articles/jss_files/figure-latex/resolving-graph-1} \end{center}
+\begin{center}\includegraphics[width=200px,height=200px]{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp66rOrm/filed7e3666a592/dev/articles/jss_files/figure-latex/resolving-graph-1} \end{center}
 
 \end{CodeChunk}
 
@@ -943,7 +943,7 @@ R> uni.cfd.mat["test", "score"] <- uni.cfd.mat["score", "test"] <- 1L
 R> FA.semimarkov <- fairadapt(score ~ .,
 +   train.data = uni_admission[1:nsamp, ],
 +   test.data = uni_admission[(nsamp+1):(2*nsamp), ],
-+   adj.mat = uni.adj.mat, cfd.mat = uni.cfd.mat, protect.A = "gender",
++   adj.mat = uni.adj.mat, cfd.mat = uni.cfd.mat, prot.attr = "gender",
 +   visualize.graph = F)
 \end{CodeInput}
 \end{CodeChunk}
@@ -957,7 +957,7 @@ R> plot(FA.semimarkov, graph = T, vertex.size = 40,
 \end{CodeInput}
 
 
-\begin{center}\includegraphics[width=200px,height=200px]{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpe6cx6o/file72349a306b4/dev/articles/jss_files/figure-latex/graph-semimarkov-1} \end{center}
+\begin{center}\includegraphics[width=200px,height=200px]{/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp66rOrm/filed7e3666a592/dev/articles/jss_files/figure-latex/graph-semimarkov-1} \end{center}
 
 \end{CodeChunk}
 
